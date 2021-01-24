@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/learning-kubernetes/en/authors/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href=""
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/authors/"
+                />
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/en/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/learning-kubernetes/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/en/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/learning-kubernetes/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/"
+                />
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/en/publication_types/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/learning-kubernetes/publication_types/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/publication_types/"
+                />
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/en/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/learning-kubernetes/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/tags/"
+                />
+  </url>
+  
+</urlset>
