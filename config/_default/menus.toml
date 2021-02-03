@@ -10,5 +10,10 @@
 
 [[main]]
   name = "Kubernetes 基础"
-  url = "/basics/"
+  url = "/basics.html"
   weight = 20
+
+[[main]]
+  name = "增强特性"
+  url = "/kep.html"
+  weight = 30

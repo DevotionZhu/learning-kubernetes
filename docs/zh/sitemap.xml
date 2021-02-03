@@ -3,39 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc></loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/learning-kubernetes/en/authors/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href=""
-                />
-  </url>
-  
-  <url>
-    <loc>/learning-kubernetes/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/learning-kubernetes/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/learning-kubernetes/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>/learning-kubernetes/basics/</loc>
+    <loc>/learning-kubernetes/kep/sidecar-containers.html</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/learning-kubernetes/</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -49,16 +23,53 @@
   </url>
   
   <url>
-    <loc>/learning-kubernetes/publication_types/</loc>
+    <loc>/learning-kubernetes/kep.html</loc>
+    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc></loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/learning-kubernetes/en/publication_types/"
+                href="/learning-kubernetes/en/authors.html"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/learning-kubernetes/publication_types/"
+                href=""
+                />
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/categories.html</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/categories.html"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/learning-kubernetes/categories.html"
+                />
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/basics.html</loc>
+  </url>
+  
+  <url>
+    <loc>/learning-kubernetes/publication_types.html</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/learning-kubernetes/en/publication_types.html"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/learning-kubernetes/publication_types.html"
                 />
   </url>
   
@@ -67,16 +78,16 @@
   </url>
   
   <url>
-    <loc>/learning-kubernetes/tags/</loc>
+    <loc>/learning-kubernetes/tags.html</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/learning-kubernetes/en/tags/"
+                href="/learning-kubernetes/en/tags.html"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/learning-kubernetes/tags/"
+                href="/learning-kubernetes/tags.html"
                 />
   </url>
   

@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/learning-kubernetes/en/authors/</loc>
+    <loc>/learning-kubernetes/en/authors.html</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -12,21 +12,21 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/learning-kubernetes/en/authors/"
+                href="/learning-kubernetes/en/authors.html"
                 />
   </url>
   
   <url>
-    <loc>/learning-kubernetes/en/categories/</loc>
+    <loc>/learning-kubernetes/en/categories.html</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/learning-kubernetes/categories/"
+                href="/learning-kubernetes/categories.html"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/learning-kubernetes/en/categories/"
+                href="/learning-kubernetes/en/categories.html"
                 />
   </url>
   
@@ -45,30 +45,30 @@
   </url>
   
   <url>
-    <loc>/learning-kubernetes/en/publication_types/</loc>
+    <loc>/learning-kubernetes/en/publication_types.html</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/learning-kubernetes/publication_types/"
+                href="/learning-kubernetes/publication_types.html"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/learning-kubernetes/en/publication_types/"
+                href="/learning-kubernetes/en/publication_types.html"
                 />
   </url>
   
   <url>
-    <loc>/learning-kubernetes/en/tags/</loc>
+    <loc>/learning-kubernetes/en/tags.html</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="/learning-kubernetes/tags/"
+                href="/learning-kubernetes/tags.html"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/learning-kubernetes/en/tags/"
+                href="/learning-kubernetes/en/tags.html"
                 />
   </url>
   
