@@ -22,9 +22,7 @@ weight: 1
 * k8s issue: [#65502](https://github.com/kubernetes/kubernetes/issues/65502)
 
 ### istio 场景
-* pod 启动时，业务容器比 istio-proxy 先 ready
-  1. 流量转发到业务容器，但 istio-proxy 还无法接受流量，导致流量异常；规避方法，在业务容器跑脚本延时启动进程，等 envoy ready (收到初始配置)再启动。
-  2. 容器化过渡的应用，业务容器启动时需要调用其它服务，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环。规避方法：改造业务，在启动逻辑中加重试逻辑。
-* pod 销毁时，业务容器处理 SIGTERM，在 graceful shutdown 逻辑中调用另外的服务通知清理，但 envoy 同时也接收了 SIGTERM，不再转发增量请求，导致调用失败。
+* pod 启动时，业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环。规避方法：改造业务，在启动逻辑中加重试逻辑。
+* pod 销毁时，业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败。
 
 ## 参考资料
