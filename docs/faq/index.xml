@@ -23,7 +23,7 @@
 &lt;p&gt;&lt;strong&gt;解决方案:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;使用 VPA 根据 container 实际使用的资源大小来动态调整 container 的 request/limit，使得 HPA 计算出来的平均值能够比较客观反映 Pod 整体负载情况。&lt;/li&gt;
-&lt;li&gt;使用 &lt;a href=&#34;&#34;&gt;Container HPA&lt;/a&gt; 特性，让 HPA 计算时更加 &amp;ldquo;聪明&amp;rdquo; 一点。&lt;/li&gt;
+&lt;li&gt;使用 &lt;a href=&#34;../kep/container-hpa.html&#34;&gt;Container HPA&lt;/a&gt; 特性，让 HPA 计算时更加 &amp;ldquo;聪明&amp;rdquo; 一点。&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>

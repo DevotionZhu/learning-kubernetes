@@ -13,4 +13,4 @@ weight: 1
 
 **解决方案:**
 1. 使用 VPA 根据 container 实际使用的资源大小来动态调整 container 的 request/limit，使得 HPA 计算出来的平均值能够比较客观反映 Pod 整体负载情况。
-2. 使用 [Container HPA]() 特性，让 HPA 计算时更加 "聪明" 一点。
+2. 使用 [Container HPA](../kep/container-hpa.html) 特性，让 HPA 计算时更加 "聪明" 一点。
