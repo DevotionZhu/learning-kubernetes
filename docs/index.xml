@@ -85,6 +85,7 @@
 &lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;特性跟踪 issue: &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610&#34;&gt;https://github.com/kubernetes/enhancements/issues/1610&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;KEP 文档: &lt;a href=&#34;https://github.com/kubernetes/enhancements/tree/master/keps/sig-autoscaling/1610-container-resource-autoscaling&#34;&gt;https://github.com/kubernetes/enhancements/tree/master/keps/sig-autoscaling/1610-container-resource-autoscaling&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

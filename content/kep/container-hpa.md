@@ -13,3 +13,4 @@ weight: 2
 ## 参考资料
 
 * 特性跟踪 issue: https://github.com/kubernetes/enhancements/issues/1610
+* KEP 文档: https://github.com/kubernetes/enhancements/tree/master/keps/sig-autoscaling/1610-container-resource-autoscaling
