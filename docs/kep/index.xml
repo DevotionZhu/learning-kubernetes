@@ -61,7 +61,13 @@
       <link>/learning-kubernetes/kep/container-hpa.html</link>
       <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
       <guid>/learning-kubernetes/kep/container-hpa.html</guid>
-      <description>&lt;h2 id=&#34;进展&#34;&gt;进展&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;历史&#34;&gt;历史&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;2019-12-17: &lt;a href=&#34;https://github.com/arjunrn&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Arjun Naik&lt;/a&gt; 提出 issue &lt;a href=&#34;https://github.com/kubernetes/kubernetes/issues/86349&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#86349&lt;/a&gt; 。&lt;/li&gt;
+&lt;li&gt;2020-03-11: 提出 KEP &lt;a href=&#34;https://github.com/kubernetes/enhancements/pull/1609&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PR #1609&lt;/a&gt; ；发起 issue &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#1610&lt;/a&gt; 来跟进此特性。&lt;/li&gt;
+&lt;li&gt;2020-04-03: KEP &lt;a href=&#34;https://github.com/kubernetes/enhancements/pull/1609&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#1609&lt;/a&gt; 被接受。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;进展&#34;&gt;进展&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;规划在 1.19 进入 alpha，但最终未能实现完，还没合入，见 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610#issuecomment-631216704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;comment&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;有望在 1.20 合入，进入 alpha，见 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610#issuecomment-691667871&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;comment&lt;/a&gt;&lt;/li&gt;
