@@ -9,7 +9,7 @@ if [ $# -eq 1  ]
     then msg="$1"
 fi
 
-# Build the project. 
+# Build the project.
 hugo -d docs
 
 # Add changes to git.
