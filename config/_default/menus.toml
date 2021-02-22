@@ -17,3 +17,8 @@
   name = "增强特性"
   url = "/kep.html"
   weight = 30
+
+[[main]]
+name = "常见问题"
+url = "/faq.html"
+weight = 40

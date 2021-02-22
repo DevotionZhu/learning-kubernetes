@@ -34,10 +34,11 @@
   
     
   
-  <meta name="description" content="腾讯云高级工程师">
+  <meta name="description" content="container 负载不均不扩容 问题描述: K8S HPA 算法是按照 Pod 中所有 container 的资源使用平均值来算的，如果 Pod 中有多个 container，它们的资源使用相差较大，可能导致某个 container 高负载了还不扩容。
+场景举例: istio 场景下，Pod 中有业务 container 和 sidecar container，如果业务 container 的 cpu 100%，而 sidecar container 的 CPU 0%，它们平均下来就是 50%，当 HPA 指定的是 CPU 60% 扩容，这种情况下不会扩容，导致业务高负载还不扩容，影响线上业务。">
 
   
-  <link rel="alternate" hreflang="zh-Hans" href="/learning-kubernetes/basics.html">
+  <link rel="alternate" hreflang="zh-Hans" href="/learning-kubernetes/faq/hpa.html">
 
   
 
@@ -253,8 +254,6 @@
   
 
   
-  <link rel="alternate" href="/learning-kubernetes/basics/index.xml" type="application/rss+xml" title="Kubernetes 学习笔记">
-  
 
   
   <link rel="manifest" href="/learning-kubernetes/index.webmanifest">
@@ -263,7 +262,7 @@
   <link rel="icon" type="image/png" href="/learning-kubernetes/images/icon_hueb790c05036a8d1bd171c80d9b684535_35216_32x32_fill_lanczos_center_2.png">
   <link rel="apple-touch-icon" type="image/png" href="/learning-kubernetes/images/icon_hueb790c05036a8d1bd171c80d9b684535_35216_192x192_fill_lanczos_center_2.png">
 
-  <link rel="canonical" href="/learning-kubernetes/basics.html">
+  <link rel="canonical" href="/learning-kubernetes/faq/hpa.html">
 
   
   
@@ -282,29 +281,35 @@
   <meta property="twitter:creator" content="@imrocchan">
   
   <meta property="og:site_name" content="Kubernetes 学习笔记">
-  <meta property="og:url" content="/learning-kubernetes/basics.html">
-  <meta property="og:title" content="Kubernetes 基础 | Kubernetes 学习笔记">
-  <meta property="og:description" content="腾讯云高级工程师"><meta property="og:image" content="/learning-kubernetes/images/logo_hu42c222176c22e108a51ae6c5f8d90768_31178_300x300_fit_lanczos_2.png">
+  <meta property="og:url" content="/learning-kubernetes/faq/hpa.html">
+  <meta property="og:title" content="HPA 相关问题 | Kubernetes 学习笔记">
+  <meta property="og:description" content="container 负载不均不扩容 问题描述: K8S HPA 算法是按照 Pod 中所有 container 的资源使用平均值来算的，如果 Pod 中有多个 container，它们的资源使用相差较大，可能导致某个 container 高负载了还不扩容。
+场景举例: istio 场景下，Pod 中有业务 container 和 sidecar container，如果业务 container 的 cpu 100%，而 sidecar container 的 CPU 0%，它们平均下来就是 50%，当 HPA 指定的是 CPU 60% 扩容，这种情况下不会扩容，导致业务高负载还不扩容，影响线上业务。"><meta property="og:image" content="/learning-kubernetes/images/logo_hu42c222176c22e108a51ae6c5f8d90768_31178_300x300_fit_lanczos_2.png">
   <meta property="twitter:image" content="/learning-kubernetes/images/logo_hu42c222176c22e108a51ae6c5f8d90768_31178_300x300_fit_lanczos_2.png"><meta property="og:locale" content="zh-Hans">
   
     
+      <meta property="article:published_time" content="2021-02-22T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2021-02-22T00:00:00&#43;00:00">
   
 
   
 
 
 
-
   
 
 
   
 
 
+  
 
 
 
-  <title>Kubernetes 基础 | Kubernetes 学习笔记</title>
+
+
+  <title>HPA 相关问题 | Kubernetes 学习笔记</title>
 
 </head>
 
@@ -462,7 +467,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link  active" href="/learning-kubernetes/basics.html"><span>Kubernetes 基础</span></a>
+          <a class="nav-link " href="/learning-kubernetes/basics.html"><span>Kubernetes 基础</span></a>
         </li>
 
         
@@ -593,7 +598,7 @@
     <div class="d-flex">
       <span class="d-md-none pl-1 flex-grow-1 text-left overflow-hidden">
         
-          Kubernetes 基础
+          常见问题
         
       </span>
       <span><i class="fas fa-chevron-down"></i></span>
@@ -640,7 +645,14 @@
 
     
       <ul class="nav docs-sidenav">
-        <li class="active"><a href="/learning-kubernetes/basics.html">Kubernetes 基础</a></li>
+        <li class=""><a href="/learning-kubernetes/faq.html">常见问题</a></li>
+    
+      
+
+
+  <li class="active"><a href="/learning-kubernetes/faq/hpa.html">HPA 相关问题</a></li>
+
+      
     
 
     
@@ -659,7 +671,11 @@
         <li><a href="#" id="back_to_top" class="docs-toc-title">在本页</a></li>
       </ul>
 
-      <nav id="TableOfContents"></nav>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#container-负载不均不扩容">container 负载不均不扩容</a></li>
+  </ul>
+</nav>
 
       
     </div>
@@ -676,6 +692,7 @@
     <ol class="breadcrumb">
       
   
+  
 
   <li class="breadcrumb-item">
     <a href="/learning-kubernetes/">
@@ -686,8 +703,17 @@
   </li>
 
 
+  <li class="breadcrumb-item">
+    <a href="/learning-kubernetes/faq.html">
+      
+        常见问题
+      
+    </a>
+  </li>
+
+
       <li class="breadcrumb-item active" aria-current="page">
-        Kubernetes 基础
+        HPA 相关问题
       </li>
     </ol>
   </nav>
@@ -695,10 +721,17 @@
 
           
 
-          <h1>Kubernetes 基础</h1>
+          <h1>HPA 相关问题</h1>
 
           <div class="article-style">
-            <p>先占位，后续陆续补充笔记</p>
+            <h2 id="container-负载不均不扩容">container 负载不均不扩容</h2>
+<p><strong>问题描述:</strong> K8S HPA 算法是按照 Pod 中所有 container 的资源使用平均值来算的，如果 Pod 中有多个 container，它们的资源使用相差较大，可能导致某个 container 高负载了还不扩容。</p>
+<p><strong>场景举例:</strong> istio 场景下，Pod 中有业务 container 和 sidecar container，如果业务 container 的 cpu 100%，而 sidecar container 的 CPU 0%，它们平均下来就是 50%，当 HPA 指定的是 CPU 60% 扩容，这种情况下不会扩容，导致业务高负载还不扩容，影响线上业务。</p>
+<p><strong>解决方案:</strong></p>
+<ol>
+<li>使用 VPA 根据 container 实际使用的资源大小来动态调整 container 的 request/limit，使得 HPA 计算出来的平均值能够比较客观反映 Pod 整体负载情况。</li>
+<li>使用 <a href="">Container HPA</a> 特性，让 HPA 计算时更加 &ldquo;聪明&rdquo; 一点。</li>
+</ol>
 
           </div>
 
@@ -720,7 +753,7 @@
         </div>
 
         <div class="body-footer">
-          <p>最近更新于 Jan 1, 0001</p>
+          <p>最近更新于 Feb 22, 2021</p>
 
           
 
