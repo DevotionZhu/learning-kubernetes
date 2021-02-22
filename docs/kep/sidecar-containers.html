@@ -769,9 +769,10 @@
 </ul>
 <h3 id="istio-场景">istio 场景</h3>
 <ul>
-<li>pod 启动时，业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环。规避方法：改造业务，在启动逻辑中加重试逻辑。</li>
-<li>pod 销毁时，业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败。</li>
+<li>Pod 启动时，业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环。规避方法：改造业务，在启动逻辑中加重试逻辑。</li>
+<li>Pod 销毁时，业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败。</li>
 <li>Job 运行完毕退出，但 istio sidecar 不会退出，导致 Job 永不退出 (Job 需要等所有 container 停止才算退出)</li>
+<li>升级 sidecar 版本会重启所有 Pod，对大集群不友好</li>
 </ul>
 <h2 id="参考资料">参考资料</h2>
 
