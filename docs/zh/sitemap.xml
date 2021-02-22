@@ -8,8 +8,13 @@
   </url>
   
   <url>
+    <loc>/learning-kubernetes/kep/container-hpa.html</loc>
+    <lastmod>2021-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/learning-kubernetes/</loc>
-    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-22T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -24,7 +29,7 @@
   
   <url>
     <loc>/learning-kubernetes/kep.html</loc>
-    <lastmod>2021-02-02T00:00:00+00:00</lastmod>
+    <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -5,7 +5,7 @@
     <link>/learning-kubernetes/kep.html</link>
       <atom:link href="/learning-kubernetes/kep/index.xml" rel="self" type="application/rss+xml" />
     <description>增强特性</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><copyright>roc © 2021</copyright><lastBuildDate>Tue, 02 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><copyright>roc © 2021</copyright><lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/learning-kubernetes/images/logo_hu42c222176c22e108a51ae6c5f8d90768_31178_300x300_fit_lanczos_2.png</url>
       <title>增强特性</title>
@@ -50,8 +50,26 @@
 &lt;ul&gt;
 &lt;li&gt;pod 启动时，业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环。规避方法：改造业务，在启动逻辑中加重试逻辑。&lt;/li&gt;
 &lt;li&gt;pod 销毁时，业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败。&lt;/li&gt;
+&lt;li&gt;Job 运行完毕退出，但 istio sidecar 不会退出，导致 Job 永不退出 (Job 需要等所有 container 停止才算退出)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Container HPA</title>
+      <link>/learning-kubernetes/kep/container-hpa.html</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>/learning-kubernetes/kep/container-hpa.html</guid>
+      <description>&lt;h2 id=&#34;进展&#34;&gt;进展&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;规划在 1.19 进入 alpha，但最终未能实现完，还没合入，见 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610#issuecomment-631216704&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;comment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;有望在 1.20 合入，进入 alpha，见 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610#issuecomment-691667871&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;comment&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;特性跟踪 issue: &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/1610&#34;&gt;https://github.com/kubernetes/enhancements/issues/1610&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
