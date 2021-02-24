@@ -17,43 +17,33 @@
       <link>/learning-kubernetes/kep/sidecar-containers.html</link>
       <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
       <guid>/learning-kubernetes/kep/sidecar-containers.html</guid>
-      <description>&lt;h2 id=&#34;时间线&#34;&gt;时间线&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;K8S 中 Pod 如果有多个 container，正常情况会同时启动或销毁，但有些场景对容器启动或销毁顺序有依赖，就可能存在一些问题，比如在 istio 场景中:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;2018-05: &lt;a href=&#34;https://github.com/Joseph-Irving&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Joseph Irving&lt;/a&gt; 发起 Sidecar Containers 的 &lt;a href=&#34;https://github.com/kubernetes/community/pull/2148&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;KEP&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2018-11: KEP 被&lt;a href=&#34;https://github.com/kubernetes/community/pull/2148#issuecomment-442991599&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;接受&lt;/a&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2019-01: 新开 issue &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#753&lt;/a&gt; 来跟进这个特性的进展。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2020-10: 经过两年的设计与开发，社区意见出现分歧，最终宣布该 KEP 被废弃，见作者的 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753#issuecomment-713471597&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;评论&lt;/a&gt;。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;2020-11: Tim Hockin 发起新 &lt;a href=&#34;https://docs.google.com/document/d/1Q3685Ic2WV7jPo9vpmirZL1zLVJU91zd3_p_aFDPcS0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Proposal&lt;/a&gt; 草稿。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar use cases/requirements&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/kubernetes/enhancements/pull/1980&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;sidecar: Address all concerns raised&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;Pod 启动时: 业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务(比如从配置中心拉取配置)，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环 (参考 k8s issue &lt;a href=&#34;https://github.com/kubernetes/kubernetes/issues/65502&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#65502&lt;/a&gt; ) 。&lt;/li&gt;
+&lt;li&gt;Pod 销毁时: 业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败 (参考 istio issue &lt;a href=&#34;https://github.com/istio/istio/issues/7136&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#7136&lt;/a&gt; )。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;case&#34;&gt;case&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;规避方法后续整理 &lt;a href=&#34;imroc.io/learning-istio/&#34;&gt;istio 学习笔记&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;发起提案&#34;&gt;发起提案&lt;/h2&gt;
+&lt;p&gt;社区很多人也都遇到了类似的问题，在 2018-05， &lt;a href=&#34;https://github.com/Joseph-Irving&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Joseph Irving&lt;/a&gt; 发起 Sidecar Containers 的 &lt;a href=&#34;https://github.com/kubernetes/community/pull/2148&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;KEP&lt;/a&gt; ，随后在 2018-11 KEP 被&lt;a href=&#34;https://github.com/kubernetes/community/pull/2148#issuecomment-442991599&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;接受&lt;/a&gt; ，接着在 2019-01 作者又新开了 issue &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#753&lt;/a&gt; 来跟进这个特性的进展。&lt;/p&gt;
+&lt;h2 id=&#34;提案被废弃&#34;&gt;提案被废弃&lt;/h2&gt;
+&lt;p&gt;经过两年的设计与开发，在 2020-10 社区意见出现分歧，最终宣布该 KEP 被废弃，见作者的 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753#issuecomment-713471597&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;评论&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;还有文章闹过乌龙，称 1.18 会支持 sidecar 特性: &lt;a href=&#34;https://banzaicloud.com/blog/k8s-sidecars/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar container lifecycle changes in Kubernetes 1.18
+&lt;/a&gt; ，但事实证明最终没有，并且最终被废弃了。&lt;/p&gt;
+&lt;h2 id=&#34;原因总结&#34;&gt;原因总结&lt;/h2&gt;
+&lt;p&gt;总结一下原因就是，很多相关问题都是与 pod 生命周期管理有关，涉及很多场景，不仅仅是局限于一两个场景。&lt;/p&gt;
+&lt;p&gt;我们不能给每种场景都搞一个特性去解决，而是需要由一个能够从更高的高度解决所有问题的新提案来解决。&lt;/p&gt;
+&lt;h2 id=&#34;讨论新提案&#34;&gt;讨论新提案&lt;/h2&gt;
+&lt;p&gt;随后，社区发起了 sidecar 相关场景与要求的搜集 &lt;a href=&#34;https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar use cases/requirements&lt;/a&gt; ，比如:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;istio issue: &lt;a href=&#34;https://github.com/istio/istio/issues/7136&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#7136&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;k8s issue: &lt;a href=&#34;https://github.com/kubernetes/kubernetes/issues/65502&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#65502&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;istio-场景&#34;&gt;istio 场景&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Pod 启动时，业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环。规避方法：改造业务，在启动逻辑中加重试逻辑。&lt;/li&gt;
-&lt;li&gt;Pod 销毁时，业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败。&lt;/li&gt;
 &lt;li&gt;Job 运行完毕退出，但 istio sidecar 不会退出，导致 Job 永不退出 (Job 需要等所有 container 停止才算退出)&lt;/li&gt;
-&lt;li&gt;升级 sidecar 版本会重启所有 Pod，对大集群不友好&lt;/li&gt;
+&lt;li&gt;升级 sidecar 版本会重启所有 Pod，对大集群不友好，能够支持单个 container 升级就好了&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;p&gt;然后在 2020-11，Tim Hockin (K8S首席) 发起新 &lt;a href=&#34;https://docs.google.com/document/d/1Q3685Ic2WV7jPo9vpmirZL1zLVJU91zd3_p_aFDPcS0&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Proposal&lt;/a&gt; 草稿。&lt;/p&gt;
+&lt;h2 id=&#34;最新进展&#34;&gt;最新进展&lt;/h2&gt;
+&lt;p&gt;然后就没有然后了，最近也没发现什么跟这个特性相关的动静，可能是要覆盖众多场景，就需要更复杂的设计，就没那么快能想好&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     
