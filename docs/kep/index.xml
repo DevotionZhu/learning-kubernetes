@@ -27,14 +27,18 @@
 &lt;p&gt;规避方法后续整理 &lt;a href=&#34;imroc.io/learning-istio/&#34;&gt;istio 学习笔记&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;发起提案&#34;&gt;发起提案&lt;/h2&gt;
-&lt;p&gt;社区很多人也都遇到了类似的问题，在 2018-05， &lt;a href=&#34;https://github.com/Joseph-Irving&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Joseph Irving&lt;/a&gt; 发起 Sidecar Containers 的 &lt;a href=&#34;https://github.com/kubernetes/community/pull/2148&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;KEP&lt;/a&gt; ，随后在 2018-11 KEP 被&lt;a href=&#34;https://github.com/kubernetes/community/pull/2148#issuecomment-442991599&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;接受&lt;/a&gt; ，接着在 2019-01 作者又新开了 issue &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#753&lt;/a&gt; 来跟进这个特性的进展。&lt;/p&gt;
+&lt;p&gt;社区很多人也都遇到了类似的问题，开始有人提出 Proposal 来解决:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在 2018-05， &lt;a href=&#34;https://github.com/Joseph-Irving&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Joseph Irving&lt;/a&gt; 发起 Sidecar Containers 的 &lt;a href=&#34;https://github.com/kubernetes/community/pull/2148&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;KEP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;随后在 2018-11 KEP 被&lt;a href=&#34;https://github.com/kubernetes/community/pull/2148#issuecomment-442991599&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;接受&lt;/a&gt; 。&lt;/li&gt;
+&lt;li&gt;接着在 2019-01 作者又新开了 issue &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;#753&lt;/a&gt; 来跟进这个特性的进展。&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;提案被废弃&#34;&gt;提案被废弃&lt;/h2&gt;
 &lt;p&gt;经过两年的设计与开发，在 2020-10 社区意见出现分歧，最终宣布该 KEP 被废弃，见作者的 &lt;a href=&#34;https://github.com/kubernetes/enhancements/issues/753#issuecomment-713471597&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;评论&lt;/a&gt; 。&lt;/p&gt;
 &lt;p&gt;还有文章闹过乌龙，称 1.18 会支持 sidecar 特性: &lt;a href=&#34;https://banzaicloud.com/blog/k8s-sidecars/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar container lifecycle changes in Kubernetes 1.18
 &lt;/a&gt; ，但事实证明最终没有，并且最终被废弃了。&lt;/p&gt;
 &lt;h2 id=&#34;原因总结&#34;&gt;原因总结&lt;/h2&gt;
-&lt;p&gt;总结一下原因就是，很多相关问题都是与 pod 生命周期管理有关，涉及很多场景，不仅仅是局限于一两个场景。&lt;/p&gt;
-&lt;p&gt;我们不能给每种场景都搞一个特性去解决，而是需要由一个能够从更高的高度解决所有问题的新提案来解决。&lt;/p&gt;
+&lt;p&gt;总结一下原因就是，很多相关问题都是与 pod 生命周期管理有关，涉及很多场景，不仅仅是局限于一两个场景。 我们不能给每种场景都搞一个特性去解决，而是需要由一个能够从更高的高度解决所有问题的新提案来解决。&lt;/p&gt;
 &lt;h2 id=&#34;讨论新提案&#34;&gt;讨论新提案&lt;/h2&gt;
 &lt;p&gt;随后，社区发起了 sidecar 相关场景与要求的搜集 &lt;a href=&#34;https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar use cases/requirements&lt;/a&gt; ，比如:&lt;/p&gt;
 &lt;ul&gt;
