@@ -22,7 +22,7 @@ K8S 中 Pod 如果有多个 container，正常情况会同时启动或销毁，�
 经过两年的设计与开发，在 2020-10 社区意见出现分歧，最终宣布该 KEP 被废弃，见作者的 [评论](https://github.com/kubernetes/enhancements/issues/753#issuecomment-713471597) 。
 
 还有文章闹过乌龙，称 1.18 会支持 sidecar 特性: [Sidecar container lifecycle changes in Kubernetes 1.18
-](https://banzaicloud.com/blog/k8s-sidecars/) ，但事实证明最终没有，并且最终被废弃了。
+](https://banzaicloud.com/blog/k8s-sidecars/) ，但事实证明最终没有，并且还被废弃了。
 
 ## 原因总结
 
