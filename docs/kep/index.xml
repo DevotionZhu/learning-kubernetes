@@ -40,7 +40,7 @@
 &lt;h2 id=&#34;原因总结&#34;&gt;原因总结&lt;/h2&gt;
 &lt;p&gt;总结一下原因就是，很多相关问题都是与 pod 生命周期管理有关，涉及很多场景，不仅仅是局限于一两个场景。 我们不能给每种场景都搞一个特性去解决，而是需要由一个能够从更高的高度解决所有问题的新提案来解决。&lt;/p&gt;
 &lt;h2 id=&#34;讨论新提案&#34;&gt;讨论新提案&lt;/h2&gt;
-&lt;p&gt;随后，社区发起了 sidecar 相关场景与要求的搜集 &lt;a href=&#34;https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar use cases/requirements&lt;/a&gt; ，比如:&lt;/p&gt;
+&lt;p&gt;随后，社区发起了 sidecar 相关场景与要求的搜集 &lt;a href=&#34;https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sidecar use cases/requirements&lt;/a&gt; ，我印象比较深刻的有:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Job 运行完毕退出，但 istio sidecar 不会退出，导致 Job 永不退出 (Job 需要等所有 container 停止才算退出)&lt;/li&gt;
 &lt;li&gt;升级 sidecar 版本会重启所有 Pod，对大集群不友好，能够支持单个 container 升级就好了&lt;/li&gt;

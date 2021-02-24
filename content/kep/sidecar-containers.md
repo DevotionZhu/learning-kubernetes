@@ -30,7 +30,7 @@ K8S 中 Pod 如果有多个 container，正常情况会同时启动或销毁，�
 
 ## 讨论新提案
 
-随后，社区发起了 sidecar 相关场景与要求的搜集 [Sidecar use cases/requirements](https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2) ，比如:
+随后，社区发起了 sidecar 相关场景与要求的搜集 [Sidecar use cases/requirements](https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2) ，我印象比较深刻的有:
 * Job 运行完毕退出，但 istio sidecar 不会退出，导致 Job 永不退出 (Job 需要等所有 container 停止才算退出)
 * 升级 sidecar 版本会重启所有 Pod，对大集群不友好，能够支持单个 container 升级就好了
 

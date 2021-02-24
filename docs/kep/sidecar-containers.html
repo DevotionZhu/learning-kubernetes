@@ -756,7 +756,7 @@
 <h2 id="原因总结">原因总结</h2>
 <p>总结一下原因就是，很多相关问题都是与 pod 生命周期管理有关，涉及很多场景，不仅仅是局限于一两个场景。 我们不能给每种场景都搞一个特性去解决，而是需要由一个能够从更高的高度解决所有问题的新提案来解决。</p>
 <h2 id="讨论新提案">讨论新提案</h2>
-<p>随后，社区发起了 sidecar 相关场景与要求的搜集 <a href="https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2" target="_blank" rel="noopener">Sidecar use cases/requirements</a> ，比如:</p>
+<p>随后，社区发起了 sidecar 相关场景与要求的搜集 <a href="https://docs.google.com/document/d/1Drw9C_Ljpcr4X9UPLvms1fn8uMRnTfJLb-xipgX4C1M/edit#heading=h.1kqwby7migh2" target="_blank" rel="noopener">Sidecar use cases/requirements</a> ，我印象比较深刻的有:</p>
 <ul>
 <li>Job 运行完毕退出，但 istio sidecar 不会退出，导致 Job 永不退出 (Job 需要等所有 container 停止才算退出)</li>
 <li>升级 sidecar 版本会重启所有 Pod，对大集群不友好，能够支持单个 container 升级就好了</li>
