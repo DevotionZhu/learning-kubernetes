@@ -740,7 +740,7 @@
 <li>Pod 销毁时: 业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败 (参考 istio issue <a href="https://github.com/istio/istio/issues/7136" target="_blank" rel="noopener">#7136</a> )。</li>
 </ul>
 <blockquote>
-<p>规避方法后续整理 <a href="imroc.io/learning-istio/">istio 学习笔记</a></p>
+<p>规避方法后续整理 <a href="https://imroc.io/learning-istio/" target="_blank" rel="noopener">istio 学习笔记</a></p>
 </blockquote>
 <h2 id="发起提案">发起提案</h2>
 <p>社区很多人也都遇到了类似的问题，开始有人提出 Proposal 来解决:</p>

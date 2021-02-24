@@ -10,7 +10,7 @@ weight: 1
 K8S 中 Pod 如果有多个 container，正常情况会同时启动或销毁，但有些场景对容器启动或销毁顺序有依赖，就可能存在一些问题，比如在 istio 场景中:
 * Pod 启动时: 业务容器比 istio-proxy 先 ready。容器化过渡的应用，业务容器启动时需要调用其它服务(比如从配置中心拉取配置)，如果失败就退出，没有重试逻辑，而当 envoy 启动更慢时，业务容器调用其它服务失败，导致 pod 启动失败，如此循环 (参考 k8s issue [#65502](https://github.com/kubernetes/kubernetes/issues/65502) ) 。
 * Pod 销毁时: 业务容器和 envoy 同时收到 SIGTERM，envoy 不再处理增量连接，但业务容器在 graceful shutdown 过程中可能需要调用另外的服务（比如通知其它清理进行清理操作)，这时候 envoy 就拒绝掉新的请求，导致调用失败 (参考 istio issue [#7136](https://github.com/istio/istio/issues/7136) )。
-> 规避方法后续整理 [istio 学习笔记](imroc.io/learning-istio/)
+> 规避方法后续整理 [istio 学习笔记](https://imroc.io/learning-istio/)
 
 ## 发起提案
 社区很多人也都遇到了类似的问题，开始有人提出 Proposal 来解决:
